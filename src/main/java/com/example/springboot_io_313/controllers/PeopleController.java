@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -24,11 +25,13 @@ public class PeopleController {
     }
 
     @GetMapping("/admin")
-    public String showIndexPage(Model model, Authentication authentication) {
+    @ResponseBody
+    public List<Person> showIndexPage(Model model, Authentication authentication) {
         model.addAttribute("people", peopleService.index());
         model.addAttribute("personA", peopleService.findPersonByEmail(((Person) authentication.getPrincipal()).getEmail()));
         model.addAttribute("person2", new Person());
-        return "people/index";
+//        return "people/index";
+        return peopleService.index();
     }
 
     @GetMapping("/user")
