@@ -1,10 +1,1 @@
-
-
-
-$(document).ready(function(){
-
-    $('.table .eBtn').on('click', function (event){
-
-        $('.myForm #exampleModal').modal();
-    });
-});
+console.log("Hello from our JS")
