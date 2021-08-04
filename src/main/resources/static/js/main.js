@@ -42,3 +42,12 @@ async function loadByBreed(breed) {
     }
 
 }
+
+async function start2() {
+    const response = fetch("api/users")
+    const data = await response.json()
+    console.log(data)
+    // createBreed(data.message)
+}
+
+start2()
