@@ -1,4 +1,4 @@
-package com.example.springboot_io_312.entity;
+package com.example.springboot_io_313.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;

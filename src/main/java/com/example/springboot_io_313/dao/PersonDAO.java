@@ -1,6 +1,6 @@
-package com.example.springboot_io_312.dao;
+package com.example.springboot_io_313.dao;
 
-import com.example.springboot_io_312.entity.Person;
+import com.example.springboot_io_313.entity.Person;
 
 import java.util.List;
 

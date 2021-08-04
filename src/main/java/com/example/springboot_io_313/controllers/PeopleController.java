@@ -1,7 +1,7 @@
-package com.example.springboot_io_312.controllers;
+package com.example.springboot_io_313.controllers;
 
-import com.example.springboot_io_312.entity.Person;
-import com.example.springboot_io_312.service.PeopleService;
+import com.example.springboot_io_313.entity.Person;
+import com.example.springboot_io_313.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
