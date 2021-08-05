@@ -12,16 +12,17 @@
 async function start() {
     const response = await fetch("https://dog.ceo/api/breeds/list/all")
     const data = await response.json()
-    // console.log("start")
-    // console.log(data)
+    console.log("start")
+    console.log(data)
     createBreed(data.message)
+    console.log(data.message)
 }
 
 start()
 
 
 function createBreed(breedList) {
-    document.getElementById("breed").innerHTML = `
+    document.getElementById("breed33").innerHTML = `
         <select onchange="loadByBreed(this.value)">
             <option>Choose a dog breed</option>
 <!--            <option>Corgi</option>-->
@@ -63,3 +64,99 @@ async function start2() {
 }
 
 start2()
+
+
+fetch("api/users")
+    .then(res => res.json())
+    .then(data => {
+        console.log("3rd")
+        console.log(data)
+    })
+
+
+// fetch("api/users")
+//     .then(res => res.json())
+//     .then(data => {
+//         console.log("4th")
+//         console.log(data)
+//         console.log(data.message)
+//         data.forEach(post => {
+//             console.log(post)
+//             createIndexTable(data)
+//         })
+//         }
+//     )
+
+const peopleList = document.querySelector('.people-list');
+let output = '';
+
+fetch("api/users")
+    .then(res => res.json())
+    .then(data => {
+            console.log("5th")
+            data.forEach(post => {
+                console.log(post)
+                output += `
+                <option>-- User${post.id} --</option>
+                <option>${post.id}</option>
+                <option>${post.name}</option>
+                <option>${post.surname}</option>
+                <option>${post.age}</option>
+                <option>${post.email}</option>
+                <option>`
+                    post.roles.forEach(post1 => {
+                    console.log(post1)
+                        output += `
+                        ${post1.role.substring(5)}
+                        `
+                    })
+
+                output += `
+                </option>
+                <option>------------</option>
+                `;
+            });
+        peopleList.innerHTML = output;
+        }
+    )
+
+
+
+
+
+// function createIndexTable(peopleList) {
+//     document.getElementById("people-list").innerHTML = `
+//             <option>Roles list check</option>
+//             ${Object.values(peopleList).map(function (role) {
+//         return `<option>${role}</option>`
+//     }).join('')}
+//     `
+// }
+
+
+
+// fetch("api/users")
+//     .then(res => res.json())
+//     .then(data => {
+//             console.log("5th")
+//             data.forEach(post => {
+//                 console.log(post)
+//                 output += `
+//                 <option>-- User${post.id} --</option>
+//                 <option>${post.id}</option>
+//                 <option>${post.name}</option>
+//                 <option>${post.surname}</option>
+//                 <option>${post.age}</option>
+//                 <option>${post.email}</option>
+//                 <option>
+//                     ${post.roles.forEach(post1 => {
+//                     console.log(post1)
+//                 })
+//                 }
+//                 </option>
+//                 <option>------------</option>
+//                 `;
+//             });
+//             peopleList.innerHTML = output;
+//         }
+//     )
