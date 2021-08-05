@@ -4,13 +4,15 @@
 // fetch("https://dog.ceo/api/breeds/list/all").then(function (response) {
 //     return response.json()
 // }).then(function (data) {
+//     console.log("clean fetch dogs")
 //     console.log(data)
 // })
-
-
+//
+//
 async function start() {
     const response = await fetch("https://dog.ceo/api/breeds/list/all")
     const data = await response.json()
+    // console.log("start")
     // console.log(data)
     createBreed(data.message)
 }
@@ -43,11 +45,21 @@ async function loadByBreed(breed) {
 
 }
 
+fetch("api/users").then(function (response) {
+    return response.json()
+}).then(function (data) {
+    console.log("clean fetch")
+    console.log(data)
+})
+
 async function start2() {
-    const response = fetch("api/users")
+    const response = await fetch("api/users")
+    console.log("start2")
+    console.log(response)
+
     const data = await response.json()
     console.log(data)
-    // createBreed(data.message)
+
 }
 
 start2()

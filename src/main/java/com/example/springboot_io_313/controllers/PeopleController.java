@@ -28,71 +28,14 @@ public class PeopleController {
     }
 
     @GetMapping("/admin")
-//    @ResponseBody
     public String showIndexPage(Model model, Authentication authentication) {
         model.addAttribute("people", peopleService.index());
         model.addAttribute("personA", peopleService.findPersonByEmail(((Person) authentication.getPrincipal()).getEmail()));
         model.addAttribute("person2", new Person());
         return "people/index";
-//        return peopleService.index();
-    }
-
-//    =================================== REST API
-
-    @GetMapping("api/users")
-    @ResponseBody
-    public List<Person> apiGetPeopleList() {
-        return peopleService.index();
-    }
-
-    @GetMapping("api/findlogged")
-    @ResponseBody
-    public Person apiFindLoggedUser(Authentication authentication) {
-        return peopleService.findPersonByEmail(((Person) authentication.getPrincipal()).getEmail());
-    }
-
-    @GetMapping("api/newperson")
-    @ResponseBody
-    public Person apiNewPerson() {
-        return new Person();
-    }
-
-    @GetMapping("/api/users/{id}")
-    @ResponseBody
-    public ResponseEntity<Person> get(@PathVariable Long id) {
-        try {
-            Person person = peopleService.show(id);
-            return new ResponseEntity<>(person, HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @PostMapping("/api/users")
-    @ResponseBody
-    public void apiCreatePerson(@RequestBody Person person) {
-        peopleService.save(person);
-    }
-
-    @PutMapping("/api/users/{id}")
-    @ResponseBody
-    public ResponseEntity<?> apiUpdatePerson(@RequestBody Person person, @PathVariable Long id) {
-        try {
-            peopleService.update(person, id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping("/api/users/{id}")
-    @ResponseBody
-    public void apiDeletePerson(@PathVariable Long id) {
-        peopleService.delete(id);
     }
 
 
-//    =================================== REST API
 
 
     @GetMapping("/user")
@@ -101,17 +44,12 @@ public class PeopleController {
         return "people/show";
     }
 
-//    @GetMapping("/admin/new")
-//    public String showNewPersonPage(@ModelAttribute("person") Person person) {
-//        return "people/new";
-//    }
 
     @PostMapping("/admin")
     public String createPerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "people/index";
-//            return "people/new";
         }
 
         peopleService.save(person);
@@ -120,11 +58,6 @@ public class PeopleController {
 
 
 
-//    @GetMapping("/admin/{id}/edit")
-//    public String showEditPersonPage(@PathVariable("id") Long id, Model model) {
-//        model.addAttribute("person", peopleService.show(id));
-//        return "people/edit";
-//    }
 
     @PostMapping("admin/{id}")
     public String UpdatePerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
@@ -148,7 +81,6 @@ public class PeopleController {
 
         if (bindingResult.hasErrors()) {
             return "redirect:/admin/{id}";
-//            return "people/edit";
         }
 
         peopleService.update(person, id);
@@ -172,14 +104,7 @@ public class PeopleController {
 
 
 
-//    =================================================================
-////    @GetMapping("/admin/{id}/edit")
-//    @GetMapping("/admin/edit")
-//    @ResponseBody                 // json working
-////    public Person showEditPersonPage(Long id) {
-////        return peopleService.show(id);
-////    }
-//================================================================
+
 
 
 
