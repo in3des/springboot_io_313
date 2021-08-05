@@ -87,7 +87,7 @@ fetch("api/users")
 //         }
 //     )
 
-const peopleList = document.querySelector('.people-list');
+const testFetch = document.querySelector('.people-list');
 let output = '';
 
 fetch("api/users")
@@ -104,21 +104,93 @@ fetch("api/users")
                 <option>${post.age}</option>
                 <option>${post.email}</option>
                 <option>`
-                    post.roles.forEach(post1 => {
+                post.roles.forEach(post1 => {
                     console.log(post1)
-                        output += `
+                    output += `
                         ${post1.role.substring(5)}
                         `
-                    })
+                })
 
                 output += `
                 </option>
                 <option>------------</option>
                 `;
             });
-        peopleList.innerHTML = output;
+            testFetch.innerHTML = output;
+        // document.getElementById('hello').innerHTML = output;
         }
     )
+
+
+// const mainTableList = document.querySelector('.main-table-list');
+let output1 = '';
+
+
+
+fetch("api/users")
+    .then(res => res.json())
+    .then(data => {
+        console.log("6th")
+        output1 += `
+        <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+
+                <tbody>
+        `
+        data.forEach(post => {
+            console.log(post)
+            output1 += `                
+                <tr>
+                    <td>${post.id}</td>
+                    <td>${post.name}</td>
+                    <td>${post.surname}</td>
+                    <td>${post.age}</td>
+                    <td>${post.email}</td>
+                    <td>`
+            post.roles.forEach(post1 => {
+                console.log(post1)
+                output1 += `
+                        ${post1.role.substring(5)}
+                        `
+            })
+
+            output1 += `
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-info eBtn" data-toggle="modal"
+                                th:attr="data-target='#editModal'+${post.id}"> Edit </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger eBtn" data-toggle="modal"
+                                th:attr="data-target='#deleteModal'+${post.id}">Delete</button>
+                    </td>
+                </tr>                
+                `;
+        }
+
+        );
+        output1 += `
+        </tbody>
+
+        </table>
+        `
+
+            // mainTableList.innerHTML = output1;
+        document.getElementById('main-table-list').innerHTML = output1;
+        }
+    )
+
 
 
 
