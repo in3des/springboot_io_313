@@ -133,7 +133,7 @@
 
 
 
-<!--                                                                        ============ insert FETCH ============== -->
+<!--                                                                        ============ insert FETCH MAIN TABLE ============== -->
 
 
 
@@ -300,38 +300,11 @@
                                                 <div class="row">
                                                     <div class="col">
 
-                                                        <table class="table table-hover table-striped">
-                                                            <thead>
-                                                            <tr>
-                                                                <th>ID</th>
-                                                                <th>First Name</th>
-                                                                <th>Last Name</th>
-                                                                <th>Age</th>
-                                                                <th>Email</th>
-                                                                <th>Role</th>
-                                                            </tr>
+                                                        <div id="user-table-list">
 
-                                                            </thead>
+<!--                                                                        ============ insert FETCH USER TABLE ============== -->
 
-                                                            <tbody>
-                                                            <tr style="background-color: #f2f2f2">
-                                                                <td th:utext="${personA.getId()}">..</td>
-                                                                <td th:utext="${personA.getName()}">..</td>
-                                                                <td th:utext="${personA.getSurname()}">..</td>
-                                                                <td th:utext="${personA.getAge()}">..</td>
-                                                                <td th:utext="${personA.getEmail()}">..</td>
-                                                                <td>
-                                                        <span th:each="roleInList, iStat : ${personA.getRoles()}"
-                                                              th:text="!${iStat.last} ?
-                                                        (${#strings.substring(roleInList.role,5)} + ' ')
-                                                        : (${#strings.substring(roleInList.role,5)})">
-                                                        </span>
-                                                                </td>
-                                                            </tr>
-
-                                                            </tbody>
-
-                                                        </table>
+                                                        </div>
 
                                                     </div>
                                                 </div>
