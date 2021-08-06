@@ -9,13 +9,9 @@
 // const mainTableList = document.querySelector('.main-table-list');
 let output2 = '';
 
-
-
-fetch("api/findlogged")
-    .then(res => res.json())
-    .then(data => {
-            console.log("7th")
-            output2 += `
+const renderUserTable = (user) => {
+    console.log("7th")
+    output2 += `
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
@@ -31,20 +27,20 @@ fetch("api/findlogged")
             <tbody>
               
                 <tr>
-                    <td>${data.id}</td>
-                    <td>${data.name}</td>
-                    <td>${data.surname}</td>
-                    <td>${data.age}</td>
-                    <td>${data.email}</td>
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.surname}</td>
+                    <td>${user.age}</td>
+                    <td>${user.email}</td>
                     <td>`
-                    data.roles.forEach(post1 => {
-                        console.log(post1)
-                        output2 += `
-                        ${post1.role.substring(5)}
+    user.roles.forEach(val => {
+        console.log(val)
+        output2 += `
+                        ${val.role.substring(5)}
                         `
-                    })
+    })
 
-                    output2 += `
+    output2 += `
                     </td>
                 </tr>                
             </tbody>
@@ -52,10 +48,13 @@ fetch("api/findlogged")
         </table>
         `
 
-            // mainTableList.innerHTML = output1;
-            document.getElementById('user-table-list').innerHTML = output2;
-        }
-    )
+    document.getElementById('user-table-list').innerHTML = output2;
+}
+
+
+fetch("api/findlogged")
+    .then(res => res.json())
+    .then(data => renderUserTable(data))
 
 // ================================================ FETCH USER TABLE ================================================
 
