@@ -9,69 +9,71 @@
 // })
 //
 //
-async function start() {
-    const response = await fetch("https://dog.ceo/api/breeds/list/all")
-    const data = await response.json()
-    console.log("start")
-    console.log(data)
-    createBreed(data.message)
-    console.log(data.message)
-}
-
-start()
 
 
-function createBreed(breedList) {
-    document.getElementById("breed33").innerHTML = `
-        <select onchange="loadByBreed(this.value)">
-            <option>Choose a dog breed</option>
-<!--            <option>Corgi</option>-->
-<!--            <option>Boxer</option>-->
-<!--            <option>Bulldog</option>-->
-            ${Object.keys(breedList).map(function (breed) {
-                return `<option>${breed}</option>`        
-            }).join('')}
-        </select>
-    `
-}
-
-
-async function loadByBreed(breed) {
-    if (breed != "Choose a dog breed") {
-        // alert(breed)
-        const response = await fetch(`https://dog.ceo/api/breed/${breed}/images`)
-        const data = await response.json()
-        console.log(data)
-    }
-
-}
-
-fetch("api/users").then(function (response) {
-    return response.json()
-}).then(function (data) {
-    console.log("clean fetch")
-    console.log(data)
-})
-
-async function start2() {
-    const response = await fetch("api/users")
-    console.log("start2")
-    console.log(response)
-
-    const data = await response.json()
-    console.log(data)
-
-}
-
-start2()
-
-
-fetch("api/users")
-    .then(res => res.json())
-    .then(data => {
-        console.log("3rd")
-        console.log(data)
-    })
+// async function start() {
+//     const response = await fetch("https://dog.ceo/api/breeds/list/all")
+//     const data = await response.json()
+//     console.log("start")
+//     console.log(data)
+//     createBreed(data.message)
+//     console.log(data.message)
+// }
+//
+// start()
+//
+//
+// function createBreed(breedList) {
+//     document.getElementById("breed33").innerHTML = `
+//         <select onchange="loadByBreed(this.value)">
+//             <option>Choose a dog breed</option>
+// <!--            <option>Corgi</option>-->
+// <!--            <option>Boxer</option>-->
+// <!--            <option>Bulldog</option>-->
+//             ${Object.keys(breedList).map(function (breed) {
+//                 return `<option>${breed}</option>`
+//             }).join('')}
+//         </select>
+//     `
+// }
+//
+//
+// async function loadByBreed(breed) {
+//     if (breed != "Choose a dog breed") {
+//         // alert(breed)
+//         const response = await fetch(`https://dog.ceo/api/breed/${breed}/images`)
+//         const data = await response.json()
+//         console.log(data)
+//     }
+//
+// }
+//
+// fetch("api/users").then(function (response) {
+//     return response.json()
+// }).then(function (data) {
+//     console.log("clean fetch")
+//     console.log(data)
+// })
+//
+// async function start2() {
+//     const response = await fetch("api/users")
+//     console.log("start2")
+//     console.log(response)
+//
+//     const data = await response.json()
+//     console.log(data)
+//
+// }
+//
+// start2()
+//
+//
+// fetch("api/users")
+//     .then(res => res.json())
+//     .then(data => {
+//         console.log("3rd")
+//         console.log(data)
+//     })
 
 
 // fetch("api/users")
@@ -87,50 +89,52 @@ fetch("api/users")
 //         }
 //     )
 
-const testFetch = document.querySelector('.people-list');
-let output = '';
 
-fetch("api/users")
-    .then(res => res.json())
-    .then(data => {
-            console.log("5th")
-            data.forEach(post => {
-                console.log(post)
-                output += `
-                <option>-- User${post.id} --</option>
-                <option>${post.id}</option>
-                <option>${post.name}</option>
-                <option>${post.surname}</option>
-                <option>${post.age}</option>
-                <option>${post.email}</option>
-                <option>`
-                post.roles.forEach(post1 => {
-                    console.log(post1)
-                    output += `
-                        ${post1.role.substring(5)}
-                        `
-                })
 
-                output += `
-                </option>
-                <option>------------</option>
-                `;
-            });
-            testFetch.innerHTML = output;
-        // document.getElementById('hello').innerHTML = output;
-        }
-    )
+// const testFetch = document.querySelector('.people-list');
+// let output = '';
+//
+// fetch("api/users")
+//     .then(res => res.json())
+//     .then(data => {
+//             console.log("5th")
+//             data.forEach(post => {
+//                 console.log(post)
+//                 output += `
+//                 <option>-- User${post.id} --</option>
+//                 <option>${post.id}</option>
+//                 <option>${post.name}</option>
+//                 <option>${post.surname}</option>
+//                 <option>${post.age}</option>
+//                 <option>${post.email}</option>
+//                 <option>`
+//                 post.roles.forEach(post1 => {
+//                     console.log(post1)
+//                     output += `
+//                         ${post1.role.substring(5)}
+//                         `
+//                 })
+//
+//                 output += `
+//                 </option>
+//                 <option>------------</option>
+//                 `;
+//             });
+//             testFetch.innerHTML = output;
+//         // document.getElementById('hello').innerHTML = output;
+//         }
+//     )
 
 
 
 // ================================================ FETCH MAIN TABLE ================================================
 
 const mainTableList = document.querySelector('.main-table-list');
-let output1 = '';
+let outputAll = '';
 
 const renderMainTable = (data) => {
     console.log("6th")
-    output1 += `
+    outputAll += `
         <table class="table table-hover table-striped">
                 <thead>
                 <tr>
@@ -150,23 +154,23 @@ const renderMainTable = (data) => {
         `
     data.forEach(user => {
             console.log(user)
-            output1 += `                
-                <tr data-id="${user.id}">
-                    <td class="main-id">${user.id}</td>
-                    <td class="main-name">${user.name}</td>
-                    <td class="main-surname">${user.surname}</td>
-                    <td class="main-age">${user.age}</td>
-                    <td class="main-email">${user.email}</td>
-                    <td class="main-password" style="display:none">${user.password}</td>
-                    <td class="main-roles">`
+            outputAll += `                
+                <tr data-id="${user.id}" id="row-user-${user.id}">
+                    <td class="main-id" id="main-id-${user.id}">${user.id}</td>
+                    <td class="main-name" id="main-name-${user.id}">${user.name}</td>
+                    <td class="main-surname" id="main-surname-${user.id}">${user.surname}</td>
+                    <td class="main-age" id="main-age-${user.id}">${user.age}</td>
+                    <td class="main-email" id="main-email-${user.id}">${user.email}</td>
+                    <td class="main-password" id="main-password-${user.id}" style="display:none">${user.password}</td>
+                    <td class="main-roles" id="main-roles-${user.id}">`
             user.roles.forEach(val => {
                 console.log(val)
-                output1 += `
+                outputAll += `
                         ${val.role.substring(5)}
                         `
             })
 
-            output1 += `
+            outputAll += `
                     </td>
                     <td>
                         <button type="button" class="btn btn-info" data-toggle="modal"
@@ -181,14 +185,14 @@ const renderMainTable = (data) => {
         }
 
     );
-    output1 += `
+    outputAll += `
         </tbody>
 
         </table>
         `
 
-    // document.getElementById('main-table-list').innerHTML = output1;
-    mainTableList.innerHTML = output1;
+    // document.getElementById('main-table-list').innerHTML = outputAll;
+    mainTableList.innerHTML = outputAll;
 }
 
 
@@ -203,11 +207,11 @@ fetch("api/users")
 // ================================================ FETCH USER TABLE ================================================
 
 // const mainTableList = document.querySelector('.main-table-list');
-let output2 = '';
+let outputOne = '';
 
 const renderUserTable = (user) => {
     console.log("7th")
-    output2 += `
+    outputOne += `
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
@@ -231,12 +235,12 @@ const renderUserTable = (user) => {
                     <td>`
     user.roles.forEach(val => {
         console.log(val)
-        output2 += `
+        outputOne += `
                         ${val.role.substring(5)}
                         `
     })
 
-    output2 += `
+    outputOne += `
                     </td>
                 </tr>                
             </tbody>
@@ -244,7 +248,7 @@ const renderUserTable = (user) => {
         </table>
         `
 
-    document.getElementById('user-table-list').innerHTML = output2;
+    document.getElementById('user-table-list').innerHTML = outputOne;
 }
 
 
@@ -266,6 +270,7 @@ const emailNew = document.getElementById('emailNew');
 const passwordNew = document.getElementById('passwordNew');
 const rolesNew = document.getElementById('rolesNew');
 
+let outputAdd = '';
 
 addUserForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -284,17 +289,25 @@ addUserForm.addEventListener('submit', (e) => {
             // roles: rolesNew.value
         })
     })
-        // .then(res => res.json())
-        // .then(data => {
-        //     const dataArr = []
-        //     dataArr.push(data)
-        //     console.log(data)
-        //     console.log(dataArr)
-        //     // renderMainTable(dataArr)
-        // })
 
-    // location.reload()
+
     console.log('Form submitted!');
+
+    mainTableList.innerHTML = "";
+
+    // document.getElementById('home-tab').click();
+
+    console.log(outputAll);
+    console.log('clean');
+    outputAll = ""
+    console.log(outputAll);
+    console.log('cleaned');
+
+    fetch("api/users")
+        .then(res => res.json())
+        .then(data => renderMainTable(data))
+
+
 })
 
 // ================================================ ADD USER TABLE ================================================
@@ -303,8 +316,8 @@ addUserForm.addEventListener('submit', (e) => {
 
 // ================================================ MODAL EDIT/DELETE TABLE ================================================
 
-const modalEdit = document.querySelector('.myFormEdit');
-const modalDelete = document.querySelector('.myFormDelete');
+const modalEdit = document.querySelector('.modal-edit-form');
+const modalDelete = document.querySelector('.modal-delete-form');
 const modalBtnEditSubmit = document.getElementById('edit-inside-modal')
 const modalBtnDeleteSubmit = document.getElementById('delete-inside-modal')
 
@@ -337,20 +350,19 @@ mainTableList.addEventListener('click', (e) => {
 
     let editId = e.target.parentElement.parentElement.dataset.id
 
+    let insideEditId = parent.querySelector('.main-id').textContent
+    let insideDeleteId = parent.querySelector('.main-id').textContent
+
 
     if(editButtonIsPressed) {
-        // console.log('edit user')
-        // console.log('btn '+e.target.parentElement.dataset.id)
 
-
-
-        // console.log('btn '+parent.dataset.id)
-        // console.log(parent)
-
-        // let editId = e.target.parentElement.dataset.id
-        // console.log('edit_user_id='+editId)
-
+        console.log('============================')
         console.log('edit_user_id='+editId)
+        console.log('============================')
+        // let insideEditId = editId
+        console.log('edit_user_id_UPD='+insideEditId)
+        console.log('============================')
+
 
         document.getElementById('idEdit').value = editId;
         document.getElementById('nameEdit').value = editName;
@@ -360,12 +372,17 @@ mainTableList.addEventListener('click', (e) => {
         document.getElementById('passwordEdit').value = editPassword;
         document.getElementById('rolesEdit').value = editRoles;
 
+
+
     }
 
 
     if(deleteButtonIsPressed) {
 
+        console.log('============================')
         console.log('delete_user_id='+deleteId)
+        console.log('============================')
+
 
         document.getElementById('idDelete').value = deleteId;
         document.getElementById('nameDelete').value = editName;
@@ -374,12 +391,18 @@ mainTableList.addEventListener('click', (e) => {
         document.getElementById('emailDelete').value = editEmail;
         document.getElementById('rolesDelete').value = editRoles;
 
+
+
+
     }
 
 
 
     modalEdit.addEventListener('click', (e) => {
         console.log('inside modal E')
+        console.log('editId = '+editId)
+        console.log('insideEditId = '+insideEditId)
+        console.log('------------------------------')
         e.preventDefault();
 
         // console.log(document.getElementById('idEdit').value)
@@ -388,10 +411,13 @@ mainTableList.addEventListener('click', (e) => {
 
         if(editModalButtonIsPressed) {
             console.log('EEE')
-            console.log(editId)
+            console.log('editId = '+editId)
+            console.log('insideEditId = '+insideEditId)
+            console.log('------------------------------')
 
 
-            fetch(`/api/users/${editId}`, {
+
+            fetch(`/api/users/${insideEditId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8'
@@ -406,8 +432,32 @@ mainTableList.addEventListener('click', (e) => {
                     // roles: document.getElementById('rolesEdit').value
                 })
             })
-                .then(res => res.json())
-                .then(data => console.log(data))
+            // .then(res => res.json())
+            // .then(data => console.log(data))
+
+            // document.getElementById('main-name-'+insideEditId).innerHTML = document.getElementById('nameEdit').value;
+            // document.getElementById('main-surname-'+insideEditId).innerHTML = document.getElementById('surnameEdit').value;
+            // document.getElementById('main-age-'+insideEditId).innerHTML = document.getElementById('ageEdit').value;
+            // document.getElementById('main-email-'+insideEditId).innerHTML = document.getElementById('emailEdit').value;
+            // document.getElementById('main-password-'+insideEditId).innerHTML = document.getElementById('passwordEdit').value;
+            // document.getElementById('main-roles-'+editId).innerHTML = document.getElementById('rolesEdit').value;
+
+
+
+            // ------------------ ON EDIT CLICK ------------------
+
+
+
+
+
+
+                mainTableList.innerHTML = "";
+                outputAll = "";
+
+                fetch("api/users")
+                    .then(res => res.json())
+                    .then(data => renderMainTable(data));
+
 
 
 
@@ -419,22 +469,36 @@ mainTableList.addEventListener('click', (e) => {
 
     modalDelete.addEventListener('click', (e) => {
         console.log('inside modal D')
+        console.log('deleteId = '+deleteId)
+        console.log('insideDeleteId = '+insideDeleteId)
+        console.log('------------------------------')
         e.preventDefault();
 
         let deleteModalButtonIsPressed = e.target.id == 'delete-inside-modal'
 
         if(deleteModalButtonIsPressed) {
             console.log('DDD')
-            console.log(deleteId)
+            console.log('deleteId = '+deleteId)
+            console.log('insideDeleteId = '+insideDeleteId)
+            console.log('------------------------------')
 
 
 
 
-            fetch(`/api/users/${deleteId}`, {
+            fetch(`/api/users/${insideDeleteId}`, {
                 method: 'DELETE'
             })
-                // .then(res => res.json())
-            // .then(() => location.reload())
+
+
+            document.getElementById('row-user-'+insideDeleteId).innerHTML = "";
+
+            // mainTableList.innerHTML = "";
+            // outputAll = ""
+            //
+            // fetch("api/users")
+            //     .then(res => res.json())
+            //     .then(data => renderMainTable(data))
+
 
         }
 
@@ -442,18 +506,12 @@ mainTableList.addEventListener('click', (e) => {
 
 
 
+
+
 })
 
 
-// modalBtnEditSubmit.addEventListener('click', () => {
-//     console.log('inside modal btn pressed')
-//
-// })
-//
-// modalBtnDeleteSubmit.addEventListener('click', () => {
-//     console.log('inside modal btn pressed')
-//
-// })
+
 
 
 
