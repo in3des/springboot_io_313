@@ -316,24 +316,22 @@ addUserForm.addEventListener('submit', (e) => {
 
 // ================================================ MODAL EDIT/DELETE TABLE ================================================
 
+// const mainTableList = document.querySelector('.main-table-list');
 const modalEdit = document.querySelector('.modal-edit-form');
 const modalDelete = document.querySelector('.modal-delete-form');
 const modalBtnEditSubmit = document.getElementById('edit-inside-modal')
 const modalBtnDeleteSubmit = document.getElementById('delete-inside-modal')
 
+let deleteId
+let editId
+
 mainTableList.addEventListener('click', (e) => {
-    // console.log('1st '+e.target.id);
-    // console.log('hello! click');
     e.preventDefault();
 
-    let editButtonIsPressed = e.target.id == 'edit-user'
-    let deleteButtonIsPressed = e.target.id == 'delete-user'
-    //
-    // console.log('dataset '+e.target.parentElement.dataset.id)
-    // console.log('element start ---')
-    // console.log(e.target.parentElement)
-    // console.log('element end   ---')
-    // console.log(e.target.parentElement.querySelector('.main-email').textContent)
+    let editButtonIsPressed = e.target.id === 'edit-user'
+    let deleteButtonIsPressed = e.target.id === 'delete-user'
+
+
 
     const parent = e.target.parentElement.parentElement
     // let userId = e.target.parentElement.dataset.id
@@ -346,9 +344,9 @@ mainTableList.addEventListener('click', (e) => {
     let editPassword = parent.querySelector('.main-password').textContent
     let editRoles = parent.querySelector('.main-roles').textContent
 
-    let deleteId = e.target.parentElement.parentElement.dataset.id
+    deleteId = e.target.parentElement.parentElement.dataset.id
 
-    let editId = e.target.parentElement.parentElement.dataset.id
+    editId = e.target.parentElement.parentElement.dataset.id
 
     let insideEditId = parent.querySelector('.main-id').textContent
     let insideDeleteId = parent.querySelector('.main-id').textContent
@@ -391,128 +389,121 @@ mainTableList.addEventListener('click', (e) => {
         document.getElementById('emailDelete').value = editEmail;
         document.getElementById('rolesDelete').value = editRoles;
 
+    }
+
+
+    modalEdit.addEventListener('click', watchModalEdit)
+
+    modalDelete.addEventListener('click', watchModalDelete)
+
+})
+
+function watchModalEdit(e) {
+
+    let insideEditId = editId;
+
+    console.log('inside modal E')
+    console.log('editId = '+editId)
+    console.log('insideEditId = '+insideEditId)
+    console.log('------------------------------')
+    e.preventDefault();
+
+    let editModalButtonIsPressed = e.target.id === 'edit-inside-modal'
+
+    if(editModalButtonIsPressed) {
+        console.log('EEE')
+        console.log('editId = '+editId)
+        console.log('insideEditId = '+insideEditId)
+        console.log('------------------------------')
+
+
+
+        fetch(`/api/users/${insideEditId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify({
+                id: document.getElementById('idEdit').value,
+                name: document.getElementById('nameEdit').value,
+                surname: document.getElementById('surnameEdit').value,
+                age: document.getElementById('ageEdit').value,
+                email: document.getElementById('emailEdit').value,
+                password: document.getElementById('passwordEdit').value,
+                // roles: document.getElementById('rolesEdit').value
+            })
+        })
+            .then(() => {
+                mainTableList.innerHTML = "";
+                outputAll = "";
+
+
+
+                fetch("api/users")
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        return renderMainTable(data)
+                    });
+            })
+
+
+        // document.getElementById('main-name-'+insideEditId).innerHTML = document.getElementById('nameEdit').value;
+        // document.getElementById('main-surname-'+insideEditId).innerHTML = document.getElementById('surnameEdit').value;
+        // document.getElementById('main-age-'+insideEditId).innerHTML = document.getElementById('ageEdit').value;
+        // document.getElementById('main-email-'+insideEditId).innerHTML = document.getElementById('emailEdit').value;
+        // document.getElementById('main-password-'+insideEditId).innerHTML = document.getElementById('passwordEdit').value;
+        // document.getElementById('main-roles-'+editId).innerHTML = document.getElementById('rolesEdit').value;
+
 
 
 
     }
+// ------------------- modalEditListener end -------------------
+}
 
+function watchModalDelete(e) {
 
+    let insideDeleteId = deleteId;
 
-    modalEdit.addEventListener('click', (e) => {
-        console.log('inside modal E')
-        console.log('editId = '+editId)
-        console.log('insideEditId = '+insideEditId)
-        console.log('------------------------------')
-        e.preventDefault();
+    console.log('inside modal D')
+    console.log('deleteId = '+deleteId)
+    console.log('insideDeleteId = '+insideDeleteId)
+    console.log('------------------------------')
+    e.preventDefault();
 
-        // console.log(document.getElementById('idEdit').value)
+    let deleteModalButtonIsPressed = e.target.id === 'delete-inside-modal'
 
-        let editModalButtonIsPressed = e.target.id == 'edit-inside-modal'
-
-        if(editModalButtonIsPressed) {
-            console.log('EEE')
-            console.log('editId = '+editId)
-            console.log('insideEditId = '+insideEditId)
-            console.log('------------------------------')
-
-
-
-            fetch(`/api/users/${insideEditId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8'
-                },
-                body: JSON.stringify({
-                    id: document.getElementById('idEdit').value,
-                    name: document.getElementById('nameEdit').value,
-                    surname: document.getElementById('surnameEdit').value,
-                    age: document.getElementById('ageEdit').value,
-                    email: document.getElementById('emailEdit').value,
-                    password: document.getElementById('passwordEdit').value,
-                    // roles: document.getElementById('rolesEdit').value
-                })
-            })
-            // .then(res => res.json())
-            // .then(data => console.log(data))
-
-            // document.getElementById('main-name-'+insideEditId).innerHTML = document.getElementById('nameEdit').value;
-            // document.getElementById('main-surname-'+insideEditId).innerHTML = document.getElementById('surnameEdit').value;
-            // document.getElementById('main-age-'+insideEditId).innerHTML = document.getElementById('ageEdit').value;
-            // document.getElementById('main-email-'+insideEditId).innerHTML = document.getElementById('emailEdit').value;
-            // document.getElementById('main-password-'+insideEditId).innerHTML = document.getElementById('passwordEdit').value;
-            // document.getElementById('main-roles-'+editId).innerHTML = document.getElementById('rolesEdit').value;
-
-
-
-            // ------------------ ON EDIT CLICK ------------------
-
-
-
-
-
-
-                mainTableList.innerHTML = "";
-                outputAll = "";
-
-                fetch("api/users")
-                    .then(res => res.json())
-                    .then(data => renderMainTable(data));
-
-
-
-
-        }
-
-    })
-
-
-
-    modalDelete.addEventListener('click', (e) => {
-        console.log('inside modal D')
+    if(deleteModalButtonIsPressed) {
+        console.log('DDD')
         console.log('deleteId = '+deleteId)
         console.log('insideDeleteId = '+insideDeleteId)
         console.log('------------------------------')
-        e.preventDefault();
-
-        let deleteModalButtonIsPressed = e.target.id == 'delete-inside-modal'
-
-        if(deleteModalButtonIsPressed) {
-            console.log('DDD')
-            console.log('deleteId = '+deleteId)
-            console.log('insideDeleteId = '+insideDeleteId)
-            console.log('------------------------------')
 
 
-
-
-            fetch(`/api/users/${insideDeleteId}`, {
-                method: 'DELETE'
+        fetch(`/api/users/${insideDeleteId}`, {
+            method: 'DELETE'
+        })
+            .then(() => {
+                document.getElementById('row-user-'+insideDeleteId).innerHTML = "";
+                // modalDelete.removeEventListener('click', watchModalDelete())
             })
 
 
-            document.getElementById('row-user-'+insideDeleteId).innerHTML = "";
-
-            // mainTableList.innerHTML = "";
-            // outputAll = ""
-            //
-            // fetch("api/users")
-            //     .then(res => res.json())
-            //     .then(data => renderMainTable(data))
 
 
-        }
-
-    })
-
-
-
-
-
-})
+        // mainTableList.innerHTML = "";
+        // outputAll = ""
+        //
+        // fetch("api/users")
+        //     .then(res => res.json())
+        //     .then(data => renderMainTable(data))
 
 
+    }
 
-
+// ------------------- modalDeleteListener end -------------------
+}
 
 
 
