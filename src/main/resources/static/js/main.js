@@ -233,14 +233,14 @@ const renderUserTable = (user) => {
                     <td>${user.age}</td>
                     <td>${user.email}</td>
                     <td>`
-    user.roles.forEach(val => {
-        console.log(val)
-        outputOne += `
+                    user.roles.forEach(val => {
+                        console.log(val)
+                        outputOne += `
                         ${val.role.substring(5)}
                         `
-    })
+                    })
 
-    outputOne += `
+                    outputOne += `
                     </td>
                 </tr>                
             </tbody>
@@ -268,44 +268,68 @@ const surnameNew = document.getElementById('surnameNew');
 const ageNew = document.getElementById('ageNew');
 const emailNew = document.getElementById('emailNew');
 const passwordNew = document.getElementById('passwordNew');
-const rolesNew = document.getElementById('rolesNew');
+const rolesNew = $('#rolesNew');
 
-let outputAdd = '';
+
+
+
+
+// let checkedRoles = () => {
+//     let array = []
+//     let options = document.getElementById('rolesNew').options
+//     for (let i = 0; i < options.length; i++) {
+//         if (options[i].selected) {
+//             array.push(rolesList[i])
+//         }
+//     }
+//     return array;
+// }
+    // roles: checkedRoles()
+
+
 
 addUserForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    // console.log('options -- ', rolesNew.options)
+
+    const values = rolesNew.val();
+
+
+    // console.log('roles -', rolesNew.value)
+    //
+    // console.log('values', values)
+    // console.log('formdata - ', formData.get("roles"))
 
     fetch("api/users", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json; charset=utf-8'
         },
+        // body: formData
         body: JSON.stringify({
             name: nameNew.value,
             surname: surnameNew.value,
             age: ageNew.value,
             email: emailNew.value,
             password: passwordNew.value,
-            // roles: rolesNew.value
+            roles: values
         })
     })
+        .then(() => {
+            mainTableList.innerHTML = "";
+            outputAll = "";
 
+            fetch("api/users")
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    return renderMainTable(data)
+                });
+        })
 
-    console.log('Form submitted!');
+    document.getElementById('home-tab').click();
 
-    mainTableList.innerHTML = "";
-
-    // document.getElementById('home-tab').click();
-
-    console.log(outputAll);
-    console.log('clean');
-    outputAll = ""
-    console.log(outputAll);
-    console.log('cleaned');
-
-    fetch("api/users")
-        .then(res => res.json())
-        .then(data => renderMainTable(data))
 
 
 })
