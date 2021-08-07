@@ -355,7 +355,7 @@
 
 <div class="myFormEdit">
 
-    <form  method="POST" >
+    <form class="modal-edit-form">
 
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -412,7 +412,8 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-primary" value="Edit" />
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal" id="edit-inside-modal"> Edit </button>
+<!--                        <input type="submit" class="btn btn-primary" id="edit-inside-modal" value="Edit" />-->
                     </div>
                 </div>
             </div>
@@ -431,7 +432,7 @@
 
 <div class="myFormDelete">
 
-    <form method="DELETE">
+    <form class="modal-delete-form">
 
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -481,10 +482,8 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                    <form th:method="POST" >
-                        <input type="submit" class="btn btn-danger" value="Delete"/>
-                    </form>
+                    <button type="submit" class="btn btn-danger" data-dismiss="modal" id="delete-inside-modal"> Delete </button>
+<!--                    <input type="submit" class="btn btn-danger" value="Delete"/>-->
 
                 </div>
             </div>
@@ -514,9 +513,9 @@
 </div>
 <p>===================================</p>
 
-<!--<div id="main-table-list">-->
+<div id="test111">
 
-<!--</div>-->
+</div>
 <p>===================================</p>
 
 <!--<div id="people-list">-->

@@ -139,6 +139,7 @@ const renderMainTable = (data) => {
                     <th>Last Name</th>
                     <th>Age</th>
                     <th>Email</th>
+                    <th style="display:none">Password</th>
                     <th>Role</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -156,6 +157,7 @@ const renderMainTable = (data) => {
                     <td class="main-surname">${user.surname}</td>
                     <td class="main-age">${user.age}</td>
                     <td class="main-email">${user.email}</td>
+                    <td class="main-password" style="display:none">${user.password}</td>
                     <td class="main-roles">`
             user.roles.forEach(val => {
                 console.log(val)
@@ -167,11 +169,11 @@ const renderMainTable = (data) => {
             output1 += `
                     </td>
                     <td>
-                        <button type="button" class="btn btn-info eBtn" data-toggle="modal"
+                        <button type="button" class="btn btn-info" data-toggle="modal"
                                 data-target="#editModal" id="edit-user"> Edit </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-danger eBtn" data-toggle="modal"
+                        <button type="button" class="btn btn-danger" data-toggle="modal"
                                 data-target="#deleteModal" id="delete-user"> Delete </button>
                     </td>
                 </tr>                
@@ -248,8 +250,7 @@ const renderUserTable = (user) => {
 
 fetch("api/findlogged")
     .then(res => res.json())
-    .then(data => renderUserTable(data)
-    )
+    .then(data => renderUserTable(data))
 
 // ================================================ FETCH USER TABLE ================================================
 
@@ -284,13 +285,15 @@ addUserForm.addEventListener('submit', (e) => {
         })
     })
         // .then(res => res.json())
-        .then(data => {
-            const dataArr = []
-            dataArr.push(data)
-            // renderMainTable(dataArr)
-        })
+        // .then(data => {
+        //     const dataArr = []
+        //     dataArr.push(data)
+        //     console.log(data)
+        //     console.log(dataArr)
+        //     // renderMainTable(dataArr)
+        // })
 
-    location.reload()
+    // location.reload()
     console.log('Form submitted!');
 })
 
@@ -298,69 +301,165 @@ addUserForm.addEventListener('submit', (e) => {
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-// ================================================ MODAL EDIT TABLE ================================================
+// ================================================ MODAL EDIT/DELETE TABLE ================================================
 
-mainTableList.addEventListener('click', () => {
-    // console.log('hello!');
-})
-
-// ================================================ MODAL EDIT TABLE ================================================
-
-// ================================================ MODAL DELETE TABLE ================================================
+const modalEdit = document.querySelector('.myFormEdit');
+const modalDelete = document.querySelector('.myFormDelete');
+const modalBtnEditSubmit = document.getElementById('edit-inside-modal')
+const modalBtnDeleteSubmit = document.getElementById('delete-inside-modal')
 
 mainTableList.addEventListener('click', (e) => {
-    console.log('1st '+e.target.id);
-    console.log('hello! click');
+    // console.log('1st '+e.target.id);
+    // console.log('hello! click');
     e.preventDefault();
 
     let editButtonIsPressed = e.target.id == 'edit-user'
     let deleteButtonIsPressed = e.target.id == 'delete-user'
-
-    console.log('dataset '+e.target.parentElement.dataset.id)
-    console.log('element start ---')
-    console.log(e.target.parentElement)
-    console.log('element end   ---')
+    //
+    // console.log('dataset '+e.target.parentElement.dataset.id)
+    // console.log('element start ---')
+    // console.log(e.target.parentElement)
+    // console.log('element end   ---')
     // console.log(e.target.parentElement.querySelector('.main-email').textContent)
 
-    let userId = e.target.parentElement.dataset.id
+    const parent = e.target.parentElement.parentElement
+    // let userId = e.target.parentElement.dataset.id
 
-    if(deleteButtonIsPressed) {
-        // fetch(`/api/users/${userId}`, {
-        //     method: 'DELETE'
-        // })
-        //     .then(res => res.json())
-            // .then(() => location.reload())
+    // let editId = parent.querySelector('.main-id').textContent
+    let editName = parent.querySelector('.main-name').textContent
+    let editSurname = parent.querySelector('.main-surname').textContent
+    let editAge = parent.querySelector('.main-age').textContent
+    let editEmail = parent.querySelector('.main-email').textContent
+    let editPassword = parent.querySelector('.main-password').textContent
+    let editRoles = parent.querySelector('.main-roles').textContent
 
-        // location.reload()
-        // console.log('delete pressed')
+    let deleteId = e.target.parentElement.parentElement.dataset.id
 
-        let editId = e.target.parentElement.dataset.id
-        console.log('delete_user_id='+editId)
+    let editId = e.target.parentElement.parentElement.dataset.id
 
-    }
 
     if(editButtonIsPressed) {
         // console.log('edit user')
         // console.log('btn '+e.target.parentElement.dataset.id)
 
-        const parent = e.target.parentElement.parentElement
 
-        console.log('btn '+parent.dataset.id)
-        console.log(parent)
+
+        // console.log('btn '+parent.dataset.id)
+        // console.log(parent)
 
         // let editId = e.target.parentElement.dataset.id
         // console.log('edit_user_id='+editId)
-        let editName = parent.querySelector('.main-name').textContent
-        let editEmail = parent.querySelector('.main-email').textContent
-        console.log('edit_user '+editEmail, editName)
 
+        console.log('edit_user_id='+editId)
+
+        document.getElementById('idEdit').value = editId;
+        document.getElementById('nameEdit').value = editName;
+        document.getElementById('surnameEdit').value = editSurname;
+        document.getElementById('ageEdit').value = editAge;
         document.getElementById('emailEdit').value = editEmail;
-
+        document.getElementById('passwordEdit').value = editPassword;
+        document.getElementById('rolesEdit').value = editRoles;
 
     }
+
+
+    if(deleteButtonIsPressed) {
+
+        console.log('delete_user_id='+deleteId)
+
+        document.getElementById('idDelete').value = deleteId;
+        document.getElementById('nameDelete').value = editName;
+        document.getElementById('surnameDelete').value = editSurname;
+        document.getElementById('ageDelete').value = editAge;
+        document.getElementById('emailDelete').value = editEmail;
+        document.getElementById('rolesDelete').value = editRoles;
+
+    }
+
+
+
+    modalEdit.addEventListener('click', (e) => {
+        console.log('inside modal E')
+        e.preventDefault();
+
+        // console.log(document.getElementById('idEdit').value)
+
+        let editModalButtonIsPressed = e.target.id == 'edit-inside-modal'
+
+        if(editModalButtonIsPressed) {
+            console.log('EEE')
+            console.log(editId)
+
+
+            fetch(`/api/users/${editId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                body: JSON.stringify({
+                    id: document.getElementById('idEdit').value,
+                    name: document.getElementById('nameEdit').value,
+                    surname: document.getElementById('surnameEdit').value,
+                    age: document.getElementById('ageEdit').value,
+                    email: document.getElementById('emailEdit').value,
+                    password: document.getElementById('passwordEdit').value,
+                    // roles: document.getElementById('rolesEdit').value
+                })
+            })
+                .then(res => res.json())
+                .then(data => console.log(data))
+
+
+
+        }
+
+    })
+
+
+
+    modalDelete.addEventListener('click', (e) => {
+        console.log('inside modal D')
+        e.preventDefault();
+
+        let deleteModalButtonIsPressed = e.target.id == 'delete-inside-modal'
+
+        if(deleteModalButtonIsPressed) {
+            console.log('DDD')
+            console.log(deleteId)
+
+
+
+
+            fetch(`/api/users/${deleteId}`, {
+                method: 'DELETE'
+            })
+                // .then(res => res.json())
+            // .then(() => location.reload())
+
+        }
+
+    })
+
+
+
 })
 
-// ================================================ MODAL DELETE TABLE ================================================
+
+// modalBtnEditSubmit.addEventListener('click', () => {
+//     console.log('inside modal btn pressed')
+//
+// })
+//
+// modalBtnDeleteSubmit.addEventListener('click', () => {
+//     console.log('inside modal btn pressed')
+//
+// })
+
+
+
+
+
+// ================================================ MODAL EDIT/DELETE TABLE ================================================
 
 
 // function createIndexTable(peopleList) {
