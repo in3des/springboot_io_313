@@ -286,6 +286,7 @@ const rolesNew = $('#rolesNew');
 
 
 
+
 // let checkedRoles = () => {
 //     let array = []
 //     let options = document.getElementById('rolesNew').options
@@ -372,6 +373,11 @@ const modalDelete = document.querySelector('.modal-delete-form');
 const modalBtnEditSubmit = document.getElementById('edit-inside-modal')
 const modalBtnDeleteSubmit = document.getElementById('delete-inside-modal')
 
+const rolesEdit = $('#rolesEdit');
+
+// const rolesEdit = $('#rolesEdit');
+// const rolesDelete = $('#rolesDelete');
+
 let deleteId
 let editId
 
@@ -420,7 +426,68 @@ mainTableList.addEventListener('click', (e) => {
         document.getElementById('passwordEdit').value = editPassword;
         document.getElementById('rolesEdit').value = editRoles;
 
+        console.log('editRoles = ', editRoles)
+        console.log('editRoles trim = ', editRoles.trim())
+        console.log("typeof editRoles", typeof editRoles)
 
+        console.log('split = ', editRoles.split(' '))
+
+        console.log('clean = ', editRoles.replace(/ /g,''))
+
+        const select = document.getElementById('rolesEdit').getElementsByTagName('option');
+        // if (select[i].value === 'Терпила') select[i].selected = true;
+
+        // select[0].selected = true;
+        // select[1].selected = true;
+
+        let rolesForUser = 0;
+
+        // const arrayOfRoles = editRoles.trim().split(' ');
+        // const arrayOfRoles = editRoles.replace(/ /g,'').split(' ');
+        const arrayOfRoles = editRoles.replace(/\r?\n|\r/g, ' ').trim().split(' ');
+
+        for(let i of arrayOfRoles) {
+            if (i === 'ADMIN') {
+                select[0].selected = true;
+                // rolesForUser = rolesForUser + 1;
+            } else if (i === 'USER') {
+                select[1].selected = true;
+                // rolesForUser = rolesForUser + 1;
+            }
+        }
+
+        console.log("arrayOfRoles - ", arrayOfRoles)
+
+        console.log("rolesForUser = ", rolesForUser)
+
+        // if (rolesForUser === 2) {
+        //     select[0].selected = true;
+        //     select[1].selected = true;
+        // }
+
+
+        // if (editRoles.trim() === 'ADMIN') {
+        //     console.log('admin exist')
+        //     select[0].selected = true
+        // }
+        // if (editRoles.trim() === 'USER') {
+        //     console.log('user exist')
+        //     select[1].selected = true
+        // }
+
+
+        // if (editRoles.trim() === 'ADMIN') {
+        //     console.log('admin exist')
+        //     select[0].selected = true
+        // }
+        // if (editRoles.trim() === 'USER') {
+        //     console.log('user exist')
+        //     select[1].selected = true
+        // }
+
+        // for (let i = 0; i < select.length; i++) {
+        //     if (select[i].value === 'Терпила') select[i].selected = true;
+        // }
 
     }
 
@@ -431,7 +498,6 @@ mainTableList.addEventListener('click', (e) => {
         console.log('delete_user_id='+deleteId)
         console.log('============================')
 
-
         document.getElementById('idDelete').value = deleteId;
         document.getElementById('nameDelete').value = editName;
         document.getElementById('surnameDelete').value = editSurname;
@@ -440,7 +506,6 @@ mainTableList.addEventListener('click', (e) => {
         document.getElementById('rolesDelete').value = editRoles;
 
     }
-
 
     modalEdit.addEventListener('click', watchModalEdit)
 
@@ -451,6 +516,8 @@ mainTableList.addEventListener('click', (e) => {
 function watchModalEdit(e) {
 
     let insideEditId = editId;
+
+    const valuesEdit = rolesEdit.val();
 
     console.log('inside modal E')
     console.log('editId = '+editId)
@@ -480,7 +547,7 @@ function watchModalEdit(e) {
                 age: document.getElementById('ageEdit').value,
                 email: document.getElementById('emailEdit').value,
                 password: document.getElementById('passwordEdit').value,
-                // roles: document.getElementById('rolesEdit').value
+                roles: valuesEdit
             })
         })
             .then(() => {

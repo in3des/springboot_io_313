@@ -228,7 +228,7 @@
                                                                             <div class="pt-0">  </div>
 
 
-                                                                            <select class="form-control" multiple name="roles" id="rolesNew" size="2">
+                                                                            <select class="form-control" multiple name="roles" id="rolesNew" size="2" required>
                                                                                 <option value='ROLE_ADMIN'>ADMIN</option>
                                                                                 <option value='ROLE_USER'>USER</option>
                                                                             </select>
@@ -407,10 +407,10 @@
                                 <label for="rolesEdit" class="col-form-label font-weight-bold">Role</label>
 
 
-                                <select class="form-control" multiple name="roles" id="rolesEdit" size="2">
+                                <select class="form-control" multiple name="roles" id="rolesEdit" size="2" required>
 
-                                    <option value="'ROLE_ADMIN'">ADMIN</option>
-                                    <option value="'ROLE_USER'">USER</option>
+                                    <option value='ROLE_ADMIN'> ADMIN </option>
+                                    <option value='ROLE_USER'> USER </option>
 
                                 </select>
 
@@ -419,7 +419,7 @@
                         </div>
                     </div>
 
-                    <div class="modal-footer" id="">
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary" data-dismiss="modal" id="edit-inside-modal"> Edit </button>
 <!--                        <input type="submit" class="btn btn-primary" id="edit-inside-modal" value="Edit" />-->
@@ -480,8 +480,8 @@
                             <label for="rolesDelete" class="col-form-label font-weight-bold">Role</label>
 
                             <select class="form-control" multiple name="roles" id="rolesDelete" size="2" disabled>
-                                <option value="'ROLE_ADMIN'">ADMIN</option>
-                                <option value="'ROLE_USER'">USER</option>
+                                <option value='ROLE_ADMIN'>ADMIN</option>
+                                <option value='ROLE_USER'>USER</option>
                             </select>
 
                         </div>
