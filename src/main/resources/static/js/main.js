@@ -262,6 +262,18 @@ fetch("api/findlogged")
 
 // ================================================ ADD USER TABLE ================================================
 
+// document.getElementById('nameNew').value = "";
+// document.getElementById('surnameNew').value = "";
+// document.getElementById('ageNew').value = "";
+// document.getElementById('emailNew').value = "";
+// document.getElementById('passwordNew').value = "";
+// document.getElementById('nameNew').reset();
+// document.getElementById('surnameNew').reset();
+// $('#add-user-form')[0].reset();
+// $('#ageNew')[0].reset();
+
+
+
 const addUserForm = document.querySelector('.add-user-form');
 const nameNew = document.getElementById('nameNew');
 const surnameNew = document.getElementById('surnameNew');
@@ -286,10 +298,24 @@ const rolesNew = $('#rolesNew');
 // }
     // roles: checkedRoles()
 
+document.getElementById('profile-tab').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    console.log('clear form - OK!')
+
+    document.getElementById('nameNew').value = "";
+    document.getElementById('surnameNew').value = "";
+    document.getElementById('ageNew').value = "";
+    document.getElementById('emailNew').value = "";
+    document.getElementById('passwordNew').value = "";
+
+})
+
 
 
 addUserForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
 
     // console.log('options -- ', rolesNew.options)
 
