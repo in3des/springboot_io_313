@@ -219,7 +219,7 @@
 
                                                                         <div class="form-group col-sm-4 py-0" align="center">
                                                                             <label for="passwordNew" class="col-form-label font-weight-bold py-0"> Password </label>
-                                                                            <input type="text" class="form-control py-0" id="passwordNew" name="password" required/>
+                                                                            <input type="password" class="form-control py-0" id="passwordNew" name="password" required/>
                                                                         </div>
 
 
@@ -401,7 +401,18 @@
                             </div>
                             <div class="form-group" align="center">
                                 <label for="passwordEdit" class="col-form-label font-weight-bold">Password</label>
-                                <input type="text" class="form-control" id="passwordEdit" name="password" required>
+                                <input type="password" class="form-control" id="passwordEdit" name="password" required>
+<!--                                <div class="input-group-addon">-->
+<!--                                    <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>-->
+<!--                                </div>-->
+
+<!--                                <div class="input-group" id="show_hide_password">-->
+<!--                                    <input class="form-control" type="password" id="passwordEdit">-->
+<!--                                    <div class="input-group-addon">-->
+<!--                                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
                             </div>
                             <div class="form-group" align="center">
                                 <label for="rolesEdit" class="col-form-label font-weight-bold">Role</label>
@@ -510,43 +521,11 @@
 
 
 
-<br>
-<hr>
 
-<div id="breed33">
-
-</div>
-<p>===================================</p>
-<div class="people-list">
-
-</div>
-<p>===================================</p>
-
-<div id="test111">
-
-</div>
-<p>===================================</p>
-
-<!--<div id="people-list">-->
-
-<!--</div>-->
-<!--<p>===================================</p>-->
-
-<!--<br>-->
-<!--<form th:action="@{/logout}">-->
-<!--    <input type="submit" value="LOGOUT"/>-->
-<!--</form>-->
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>-->
-
-<!--<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>-->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -555,66 +534,10 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-<!--<script src="bootstrap-input-spinner.js"></script>-->
 
-<!--<script>-->
-<!--    $('input[type=number]').inputSpinner();-->
-<!--</script>-->
 
-<!--<script th:src="@{js/main.js}" src="../../static/js/main.js"></script>-->
-<!--<script type="text/javascript" src="/js/main.js"></script>-->
 
-<script>
-    $(document).ready(function() {
-        $('li').click(function() {
-            $('li.list-group-item.active').removeClass("active");
-            $(this).addClass("active");
-        });
-    });
-</script>
 
-<script>
-    $(document).ready(function(){
-        $('.table .eBtn').on('click', function(event){
-            // event.preventDefault();
-            // var href = $(this).attr('href');
-            //
-            // $.get(href, function (person, status) {
-            //     $('.myFormEdit #id').val(person.id);
-            //     $('.myFormEdit #name').val(person.name);
-            //     $('.myFormEdit #surname').val(person.surname);
-            //     $('.myFormEdit #age').val(person.age);
-            //     $('.myFormEdit #email').val(person.email);
-            //     $('.myFormEdit #password').val(person.password);
-            //     $('.myFormEdit #roles').val(person.roles);
-            //
-            // });
-
-        $('.myFormEdit #editModal').modal();
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function(){
-        $('.table .eBtn').on('click', function(event){
-            // event.preventDefault();
-            // var href = $(this).attr('href');
-            //
-            // $.get(href, function (person, status) {
-            //     $('.myFormDelete #id').val(person.id);
-            //     $('.myFormDelete #name').val(person.name);
-            //     $('.myFormDelete #surname').val(person.surname);
-            //     $('.myFormDelete #age').val(person.age);
-            //     $('.myFormDelete #email').val(person.email);
-            //     $('.myFormDelete #roles').val(person.roles);
-            //
-            // });
-
-            $('.myFormDelete #deleteModal').modal();
-        });
-    });
-</script>
 
 
 
