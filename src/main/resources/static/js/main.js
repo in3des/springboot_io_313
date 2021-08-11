@@ -309,6 +309,10 @@ document.getElementById('profile-tab').addEventListener('click', (e) => {
     document.getElementById('ageNew').value = "";
     document.getElementById('emailNew').value = "";
     document.getElementById('passwordNew').value = "";
+    document.getElementById('passwordNew').value = "";
+    const selectNew = document.getElementById('rolesNew').getElementsByTagName('option');
+    selectNew[0].selected = false;
+    selectNew[1].selected = false;
 
 })
 
@@ -535,8 +539,8 @@ function watchModalEdit(e) {
 
 
 
-        // fetch(`/api/users/${insideEditId}`, {
-        fetch(`/api/users`, {
+        fetch(`/api/users/${insideEditId}`, {
+        // fetch(`/api/users`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'

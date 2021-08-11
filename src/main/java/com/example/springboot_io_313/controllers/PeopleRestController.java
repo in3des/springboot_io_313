@@ -60,15 +60,15 @@ public class PeopleRestController {
         peopleService.save(person);
     }
 
-//    @PutMapping("/api/users/{id}")
-//    public ResponseEntity<?> apiUpdatePerson(@RequestBody Person person, @PathVariable Long id) {
-//        try {
-//            peopleService.update(person, id);
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        } catch (NoSuchElementException e) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @PutMapping("/api/users/{id}")
+    public ResponseEntity<?> apiUpdatePerson(@RequestBody Person person, @PathVariable Long id) {
+        try {
+            peopleService.update(person, id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @PutMapping("/api/users")
     public ResponseEntity<?> apiUpdatePerson(@RequestBody Person person) {

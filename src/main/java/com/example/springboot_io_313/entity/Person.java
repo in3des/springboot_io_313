@@ -41,7 +41,7 @@ public class Person implements UserDetails {
 
     @Column(name = "password", nullable = false)
     @NotEmpty(message = "Password must not be blank")
-    @Size(min = 4, max = 30, message = "Please correct password size")
+    @Size(min = 4, max = 100, message = "Please correct password size")
     private String password;
 
 //    @ManyToMany(fetch = FetchType.EAGER)
