@@ -535,7 +535,8 @@ function watchModalEdit(e) {
 
 
 
-        fetch(`/api/users/${insideEditId}`, {
+        // fetch(`/api/users/${insideEditId}`, {
+        fetch(`/api/users`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'

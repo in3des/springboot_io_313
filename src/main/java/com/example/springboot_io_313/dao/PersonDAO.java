@@ -14,6 +14,8 @@ public interface PersonDAO{
 
     public void update(Person updatedPerson, Long id);
 
+    public void updateV2(Person updatedPerson);
+
     public void delete(Long id);
 
     public Person findPersonByEmail(String email);

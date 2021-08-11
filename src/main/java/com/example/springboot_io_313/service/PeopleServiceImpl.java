@@ -41,6 +41,12 @@ public class PeopleServiceImpl implements PeopleService {
         personDAO.update(updatedPerson, id);
     }
 
+    @Override
+    @Transactional
+    public void updateV2(Person updatedPerson) {
+        personDAO.updateV2(updatedPerson);
+    }
+
 
     @Transactional
     @Override
