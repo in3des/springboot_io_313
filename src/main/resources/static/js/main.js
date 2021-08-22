@@ -391,6 +391,10 @@ mainTableList.addEventListener('click', (e) => {
     let editButtonIsPressed = e.target.id === 'edit-user'
     let deleteButtonIsPressed = e.target.id === 'delete-user'
 
+    // console.log("click0", e.target.id)
+    // console.log("click1", e.target.dataset.id)
+    // console.log("click2", e.target.parentElement.dataset.id)
+    // console.log("click3", e.target.parentElement.parentElement.dataset.id)
 
 
     const parent = e.target.parentElement.parentElement
@@ -404,9 +408,15 @@ mainTableList.addEventListener('click', (e) => {
     let editPassword = parent.querySelector('.main-password').textContent
     let editRoles = parent.querySelector('.main-roles').textContent
 
+
+
+    // console.log('log1', e.target.parentElement.parentElement.querySelector('.main-name').textContent)
+    // console.log('log2', e.target.parentElement.querySelector('.main-name').textContent)
+
     deleteId = e.target.parentElement.parentElement.dataset.id
 
     editId = e.target.parentElement.parentElement.dataset.id
+
 
     let insideEditId = parent.querySelector('.main-id').textContent
     let insideDeleteId = parent.querySelector('.main-id').textContent
@@ -460,9 +470,15 @@ mainTableList.addEventListener('click', (e) => {
             }
         }
 
+        let value = document.getElementById('rolesEdit').selectedOptions;
+        let selectedRoles = Array.from(value).map(({value}) => value);
+        console.log('selected - ', selectedRoles);
+
         console.log("arrayOfRoles - ", arrayOfRoles)
 
         console.log("rolesForUser = ", rolesForUser)
+
+
 
         // if (rolesForUser === 2) {
         //     select[0].selected = true;
